@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина товаров</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .cart-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #f39c12;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .cart-button img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .cart-popup {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 300px;
+            height: 100%;
+            background-color: #fff;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            z-index: 9999;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .cart-popup.active {
+            transform: translateX(0);
+        }
+
+        .cart-header {
+            background-color: #34495e;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .cart-items {
+            padding: 20px;
+            list-style: none;
+            margin: 0;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f7f7f7;
+            border-radius: 5px;
+        }
+
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .cart-item-info {
+            flex-grow: 1;
+            margin-left: 10px;
+        }
+
+        .cart-item-title {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            font-weight: bold;
+            color: #2ecc71;
+        }
+
+        .cart-remove {
+            background-color: transparent;
+            border: none;
+            color: #e74c3c;
+            cursor: pointer;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            background-color: #ecf0f1;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .cart-total {
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .cart-checkout {
+            width: 100%;
+            padding: 10px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .cart-popup {
+                width: 100%;
+            }
+
+            .cart-button {
+                width: 50px;
+                height: 50px;
+            }
+
+            .cart-button img {
+                width: 20px;
+                height: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Кнопка корзины -->
+    <div class="cart-button" onclick="toggleCart()">
+        <img src="https://cdn-icons-png.flaticon.com/512/34/34627.png" alt="Корзина">
+        <div class="cart-count">3</div>
+    </div>
+
+    <!-- Окно корзины -->
+    <div class="cart-popup" id="cart-popup">
+        <div class="cart-header">Ваша корзина</div>
+        <ul class="cart-items">
+            <li class="cart-item">
+                <img src="https://via.placeholder.com/50" alt="Товар 1">
+                <div class="cart-item-info">
+                    <div class="cart-item-title">Товар 1</div>
+                    <div class="cart-item-price">1000 руб.</div>
+                </div>
+                <button class="cart-remove">X</button>
+            </li>
+            <li class="cart-item">
+                <img src="https://via.placeholder.com/50" alt="Товар 2">
+                <div class="cart-item-info">
+                    <div class="cart-item-title">Товар 2</div>
+                    <div class="cart-item-price">1500 руб.</div>
+                </div>
+                <button class="cart-remove">X</button>
+            </li>
+            <li class="cart-item">
+                <img src="https://via.placeholder.com/50" alt="Товар 3">
+                <div class="cart-item-info">
+                    <div class="cart-item-title">Товар 3</div>
+                    <div class="cart-item-price">500 руб.</div>
+                </div>
+                <button class="cart-remove">X</button>
+            </li>
+        </ul>
+        <div class="cart-footer">
+            <div class="cart-total">Итого: 3000 руб.</div>
+            <button class="cart-checkout">Оформить заказ</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleCart() {
+            var cart = document.getElementById('cart-popup');
+            cart.classList.toggle('active');
+        }
+    </script>
+
+</body>
+
+</html>
